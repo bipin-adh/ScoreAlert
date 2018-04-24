@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ScoreAlert</string>
+    <string name="api_base_url">http://api.football-data.org/</string>
+</resources>
