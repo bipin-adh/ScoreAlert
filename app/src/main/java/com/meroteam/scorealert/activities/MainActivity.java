@@ -1,56 +1,54 @@
 package com.meroteam.scorealert.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.meroteam.scorealert.R;
 import com.meroteam.scorealert.ScoreAlertApplication;
-import com.meroteam.scorealert.interfaces.DataFetchedListener;
-import com.meroteam.scorealert.network.MainResponseHandler;
+import com.meroteam.scorealert.adapters.LeagueListAdapter;
+import com.meroteam.scorealert.models.Leagues;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements DataFetchedListener {
-
-    @BindView(R.id.btn_get_data)
-    private Button btnGetData;
-    @BindView(R.id.btn_show_data)
-    private Button btnShowData;
+public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+    private LeagueListAdapter leagueListAdapter;
+
+    @BindView(R.id.rv_league_list)
+    RecyclerView recyclerViewLeagueList;
+
+    private List<Leagues> leagueList = new ArrayList<>();
+
+    public static void launchActivity(Activity activity) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        btnGetData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainResponseHandler mainResponseHandler = new MainResponseHandler(MainActivity.this, MainActivity.this);
-                mainResponseHandler.getMainResponseData();
-            }
-        });
-
-        btnShowData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "aaaa onClick: show data:" + ScoreAlertApplication.getInstance().getLeaguesDataList());
-            }
-        });
-
-    }
-
-    @Override
-    public void onSuccess() {
-        btnShowData.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onFailure(String msgError) {
-        ScoreAlertApplication.getInstance().showToast(msgError);
+        leagueList = ScoreAlertApplication.getInstance().getLeaguesDataList();
+        leagueListAdapter = new LeagueListAdapter(this, leagueList);
+        // Binds the Adapter to the ListView
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+//        recyclerViewLeagueList.setLayoutManager(new WrapContentLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewLeagueList.setLayoutManager(mLayoutManager);
+        recyclerViewLeagueList.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewLeagueList.setHasFixedSize(true);
+        recyclerViewLeagueList.setAdapter(leagueListAdapter);
+        leagueListAdapter.notifyDataSetChanged();
     }
 }

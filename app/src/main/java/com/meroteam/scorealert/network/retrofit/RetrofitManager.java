@@ -25,7 +25,6 @@ public class RetrofitManager {
     private static RetrofitManager retrofitManager;
     private static String BASE_URL;
 
-//    private final RetrofitService service;
     private final RetrofitService service;
     private Retrofit retrofit;
 

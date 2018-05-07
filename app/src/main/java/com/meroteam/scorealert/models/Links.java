@@ -2,6 +2,7 @@ package com.meroteam.scorealert.models;
 
 /**
  * Created by bpn8adh on 24/04/18.
+ * href contains api url for respective class names.
  */
 
 public class Links {

@@ -16,7 +16,6 @@ public class Leagues {
     private int numberOfGames;
     private String lastUpdated;
 
-
     protected Leagues() {
     }
 
