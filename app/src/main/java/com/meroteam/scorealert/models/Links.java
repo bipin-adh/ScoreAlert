@@ -7,28 +7,36 @@ package com.meroteam.scorealert.models;
 
 public class Links {
 
-    private Self self;
-    private Teams teams;
-    private Fixtures fixtures;
-    private LeagueTable leagueTable;
+    private SelfUrl self;
+    private TeamsUrl teams;
+    private FixturesUrl fixtures;
+    private LeagueTableUrl leagueTable;
 
-    public Self getSelf() {
+    protected Links() {
+
+    }
+
+    public SelfUrl getSelf() {
         return self;
     }
 
-    public Teams getTeams() {
+    public TeamsUrl getTeams() {
         return teams;
     }
 
-    public Fixtures getFixtures() {
+    public FixturesUrl getFixtures() {
         return fixtures;
     }
 
-    public LeagueTable getLeagueTable() {
+    public LeagueTableUrl getLeagueTable() {
         return leagueTable;
     }
 
-    private class Self {
+    public class SelfUrl {
+        public SelfUrl() {
+
+        }
+
         private String href;
 
         public String getHref() {
@@ -36,7 +44,11 @@ public class Links {
         }
     }
 
-    private class Teams {
+    public class TeamsUrl {
+        public TeamsUrl() {
+
+        }
+
         private String href;
 
         public String getHref() {
@@ -44,7 +56,12 @@ public class Links {
         }
     }
 
-    private class Fixtures {
+    public class FixturesUrl {
+
+        public FixturesUrl() {
+
+        }
+
         private String href;
 
         public String getHref() {
@@ -52,7 +69,11 @@ public class Links {
         }
     }
 
-    private class LeagueTable {
+    public class LeagueTableUrl {
+        public LeagueTableUrl() {
+
+        }
+
         private String href;
 
         public String getHref() {

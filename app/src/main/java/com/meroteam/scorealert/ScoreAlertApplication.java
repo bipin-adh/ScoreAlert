@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.meroteam.scorealert.models.LeagueTable;
 import com.meroteam.scorealert.models.Leagues;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ScoreAlertApplication extends Application {
     private static ScoreAlertApplication mInstance;
     private List<Leagues> leaguesDataList = new ArrayList<>();
+    private LeagueTable specificLeaguesDataList;
 
     @Override
     public void onCreate() {
@@ -37,6 +39,14 @@ public class ScoreAlertApplication extends Application {
 
     public List<Leagues> getLeaguesDataList() {
         return leaguesDataList;
+    }
+
+    public void setSpecificLeaguesData(LeagueTable specificLeaguesDataList) {
+        this.specificLeaguesDataList = specificLeaguesDataList;
+    }
+
+    public LeagueTable getSpecificLeaguesDataList() {
+        return specificLeaguesDataList;
     }
 
     public void showToast(String msg) {

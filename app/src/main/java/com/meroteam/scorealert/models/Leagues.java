@@ -19,6 +19,10 @@ public class Leagues {
     protected Leagues() {
     }
 
+    public Links get_links() {
+        return _links;
+    }
+
     public int getId() {
         return id;
     }

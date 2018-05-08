@@ -2,7 +2,10 @@ package com.meroteam.scorealert.network.retrofit;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.meroteam.scorealert.R;
+import com.meroteam.scorealert.models.LeagueTable;
 import com.meroteam.scorealert.models.Leagues;
 
 import java.util.List;
@@ -45,8 +48,8 @@ public class RetrofitManager {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).connectTimeout(180, TimeUnit.SECONDS).build();
 
         retrofit = new retrofit2.Retrofit.Builder()
-                .baseUrl(baseUrl)
                 .client(client)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -58,4 +61,8 @@ public class RetrofitManager {
         getAllApiCall.enqueue(mainResponseCallback);
     }
 
+    public void getSpecificLeagueData(String leagueTableUrl, Callback<LeagueTable> specificLeagueDataCallback) {
+        Call<LeagueTable> getSpecificLeagueDataApiCall = service.getSpecificLeagueData(leagueTableUrl);
+        getSpecificLeagueDataApiCall.enqueue(specificLeagueDataCallback);
+    }
 }
