@@ -2,17 +2,14 @@ package com.meroteam.scorealert.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.meroteam.scorealert.R;
-import com.meroteam.scorealert.activities.MainActivity;
-import com.meroteam.scorealert.interfaces.DataFetchedListener;
 import com.meroteam.scorealert.models.Leagues;
-import com.meroteam.scorealert.models.Links;
 import com.meroteam.scorealert.network.SpecificLeagueDataHandler;
 
 import java.util.ArrayList;
@@ -47,18 +44,17 @@ public class LeagueListAdapter extends RecyclerView.Adapter<LeagueListAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Leagues leagues = leagueList.get(position);
         holder.tvLeagueName.setText(leagues.getCaption());
         holder.tvLeagueName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                holder.progressBar.setVisibility(View.VISIBLE);
                 String leagueTableUrl = leagues.get_links().getLeagueTable().getHref();
-                Log.d(TAG, "onClick: tableurl:" + leagueTableUrl);
                 SpecificLeagueDataHandler specificLeagueDataHandler = new SpecificLeagueDataHandler(mainActivity, mainActivity);
                 specificLeagueDataHandler.getSpecificData(leagueTableUrl);
-
+                holder.progressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -70,10 +66,12 @@ public class LeagueListAdapter extends RecyclerView.Adapter<LeagueListAdapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvLeagueName;
+        ProgressBar progressBar;
 
         public MyViewHolder(View view) {
             super(view);
             tvLeagueName = view.findViewById(R.id.tv_league_name);
+            progressBar = view.findViewById(R.id.pb_get_specific_league_data);
         }
     }
 }

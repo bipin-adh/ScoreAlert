@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_fixtures"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_delete"
+        android:title="Fixtures"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_tables"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_delete"
+        android:title="Tables"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_teams"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_delete"
+        android:title="Teams"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_stats"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_delete"
+        android:title="Stats"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_more"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_delete"
+        android:title="More"
+        app:showAsAction="never" />
+</menu>

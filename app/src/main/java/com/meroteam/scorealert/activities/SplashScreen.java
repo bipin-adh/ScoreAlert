@@ -23,6 +23,7 @@ public class SplashScreen extends AppCompatActivity implements DataFetchedListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        // get the list of leagues available
         MainResponseHandler mainResponseHandler = new MainResponseHandler(SplashScreen.this, SplashScreen.this);
         mainResponseHandler.getMainResponseData();
     }

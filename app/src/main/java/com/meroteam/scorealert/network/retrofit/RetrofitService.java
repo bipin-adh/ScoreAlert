@@ -25,4 +25,3 @@ public interface RetrofitService {
     Call<LeagueTable> getSpecificLeagueData(@Url String url);
 
 }
-

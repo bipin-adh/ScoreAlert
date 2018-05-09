@@ -16,6 +16,7 @@ import retrofit2.Response;
 
 /**
  * Created by bpn8adh on 24/04/18.
+ * This class hits the api <- http://api.football-data.org/v1/competitions/ -> to get the list of leagues and their sub-data
  */
 
 public class MainResponseHandler {

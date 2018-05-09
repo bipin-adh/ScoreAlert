@@ -21,6 +21,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/*
+ List of Leagues
+ */
 public class MainActivity extends AppCompatActivity implements DataFetchedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
@@ -45,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements DataFetchedListen
         mainActivity = this;
         leagueList = ScoreAlertApplication.getInstance().getLeaguesDataList();
         leagueListAdapter = new LeagueListAdapter(this, leagueList);
-        // Binds the Adapter to the ListView
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
 //        recyclerViewLeagueList.setLayoutManager(new WrapContentLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerViewLeagueList.setLayoutManager(mLayoutManager);
@@ -58,11 +60,13 @@ public class MainActivity extends AppCompatActivity implements DataFetchedListen
     @Override
     public void onSuccess() {
         Log.d(TAG, "aaaaa onSuccess: mainactivity:" + ScoreAlertApplication.getInstance().getSpecificLeaguesDataList());
+
         ScoreAlertApplication.getInstance().showToast(ScoreAlertApplication.getInstance().getSpecificLeaguesDataList().getLeagueCaption());
+        HomeActivity.launchActivity(this);
     }
 
     @Override
     public void onFailure(String msgError) {
-
+        ScoreAlertApplication.getInstance().showToast(msgError);
     }
 }
